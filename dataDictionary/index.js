@@ -5,7 +5,8 @@ function createDataDictionary(file1, file2, outputFile) {
   const workbook1 = xlsx.readFile(file1);
   const workbook2 = xlsx.readFile(file2);
 
-  const sheet1 = workbook1.Sheets[workbook1.SheetNames[0]];
+    const sheet1 = workbook1.Sheets[workbook1.SheetNames[0]];
+    
   const sheet2 = workbook2.Sheets[workbook2.SheetNames[0]];
 
   const data1 = xlsx.utils.sheet_to_json(sheet1);
@@ -15,9 +16,6 @@ function createDataDictionary(file1, file2, outputFile) {
   const data2 = xlsx.utils.sheet_to_json(sheet2);
 
   const data2Keys = Object.keys(data2[0]);
-
-  console.log(data1Keys.length);
-  console.log(data2Keys.length);
 
   const keyMapping = {
     Sub_County: "Sub-County",
