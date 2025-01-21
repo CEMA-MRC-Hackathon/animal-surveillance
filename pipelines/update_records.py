@@ -24,10 +24,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # set file path and sheet name 
-file_path = 'D:/CEMA PROJECTS/animalHealthSurveillance/animal-surveillance/dummy_data/animal_data2.xlsx' 
+file_path = 'D:/CEMA PROJECTS/animalHealthSurveillance/animal-surveillance/dummy_data/Cleaned Animal data.xlsx' 
 sheet_name = 'Sheet1'  
 rename_col = {'Sub-County': 'Sub_County', 
-            #'sub location': 'Sub_Location',
             'Date of Start of Outbreak/Event':'Start_Outbreak_Event',
             'Date Report':'Report_Date','Disease/ Condition':'Disease_Condition',
             'Nature of Diagnosis':'Nature_of_Diagnosis', 'Test Used':'Test_Used',
@@ -39,8 +38,9 @@ rename_col = {'Sub-County': 'Sub_County',
             'Organisation (GOK, Private)':'Organisation_GOK_Private'
 } 
 
-# clean data
-def clean_pipeline(file_path, sheet_name=0, rename_columns=None, drop_duplicates=True):
+
+# clean data rename_columns=None,
+def clean_pipeline(file_path, sheet_name=0,rename_columns=None,drop_duplicates=True):
     """
     This function performs the following
 
@@ -59,7 +59,7 @@ def clean_pipeline(file_path, sheet_name=0, rename_columns=None, drop_duplicates
     
     # Rename cols
     if rename_columns:
-        animal_records.rename(columns=rename_col, inplace=True)
+       animal_records.rename(columns=rename_col, inplace=True)
 
     # Drop duplicate records
     if drop_duplicates:
@@ -106,8 +106,8 @@ def populate_animal_data():
                 animals.Nature_of_Diagnosis = row['Nature_of_Diagnosis'] 
                 animals.Species_Affected = row['Species_Affected'] 
                 animals.Number_at_Risk = row['Number_at_Risk'] 
-                animals.Number_Sick = row['Unit_cost'] 
-                animals.Number_Dead = row['Number_Sick'] 
+                animals.Number_Sick = row['Number_Sick'] 
+                animals.Number_Dead = row['Number_Dead'] 
                 animals.Number_Slaughtered = row['Number_Slaughtered'] 
                 animals.Number_Destroyed = row['Number_Destroyed'] 
                 animals.Production_System = row['Production_System'] 
