@@ -158,13 +158,6 @@ df3 <- pivot_longer(df,cols = c("Number_at_Risk","Number_Sick",
                                  levels=c("Sick","At risk","Dead","Humans affected")))
 
 
-## background, colours, order the axis 
-ggplot(df3 %>% arrange(-value),
-       aes(x=value,y=Disease_Condition,fill=variable))+
-  geom_col()+
-  facet_wrap(~variable)
-
-
 cowplot::plot_grid(
   ggplot(df3 %>% filter(variable == "Number_Sick"),
          aes(x=value,y=fct_reorder(Disease_Condition,.x=value),fill=variable))+
@@ -224,13 +217,6 @@ df4 <- pivot_longer(df,cols = c("Number_at_Risk","Number_Sick",
                                            variable=="Number_Sick" ~ "Sick",
                                            variable=="Number_Humans_Affected_zoonosis" ~ "Humans affected"),
                                  levels=c("Sick","At risk","Dead","Humans affected")))
-
-
-ggplot(df4 %>% arrange(-value),
-       aes(x=value,y=County,fill=variable))+
-  geom_col()+
-  facet_wrap(~variable)
-
 
 cowplot::plot_grid(
   ggplot(df4 %>% filter(variable == "Number_Sick",
@@ -294,10 +280,6 @@ df5 <- pivot_longer(df,cols = c("Number_at_Risk","Number_Sick",
                                                                                         variable=="Number_Humans_Affected_zoonosis" ~ "Humans affected"),
                                                                               levels=c("Sick","At risk","Dead","Humans affected")))
 
-## lots of tidying
-ggplot(df5,aes(x=County,y=value,fill=Disease_Condition))+
-  geom_col(position="dodge")+
-  facet_wrap(~variable)
 
 
 ggplot(df5,aes(x=County,y=value,fill=Disease_Condition))+
